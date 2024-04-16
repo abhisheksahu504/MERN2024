@@ -23,7 +23,7 @@ export const Register = () => {
   const handleSubmit = (e) => {
     //prevent from page refresh
     e.preventDefault();
-    alert(user);
+    console.log(user);
   };
   return (
     <>
