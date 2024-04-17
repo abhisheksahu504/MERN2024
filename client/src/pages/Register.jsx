@@ -20,10 +20,23 @@ export const Register = () => {
     });
   };
   //Handling the form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     //prevent from page refresh
     e.preventDefault();
     console.log(user);
+    // connecting front end to backend
+    try {
+      const response = await fetch("http://localhost:5173/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
+      console.log("response data", response);
+    } catch (error) {
+      console.log("register", error);
+    }
   };
   return (
     <>
@@ -42,7 +55,7 @@ export const Register = () => {
               <div>
                 {/* registration form */}
                 <div className="registration-form">
-                  <div className="main-heading mb-3">Registration Form</div>
+                  <h1 className="main-heading mb-3">Registration Form</h1>
                   <br />
                   <form onSubmit={handleSubmit}>
                     <div>

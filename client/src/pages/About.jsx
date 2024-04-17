@@ -41,7 +41,7 @@ export const About = () => {
             </div>
             {/* hero images  */}
             <img
-              src="/images/home.png"
+              src="/images/about.png"
               alt="coding together"
               width="400px"
               height="500px"
