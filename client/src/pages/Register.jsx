@@ -34,6 +34,14 @@ export const Register = () => {
         body: JSON.stringify(user),
       });
       console.log("response data", response);
+      if (response.ok) {
+        const responseData = await response.json();
+        alert("registration successful");
+        setUser({ username: "", email: "", phone: "", password: "" });
+        console.log(responseData);
+      } else {
+        console.log("error inside response ", "error");
+      }
     } catch (error) {
       console.log("register", error);
     }
