@@ -26,7 +26,7 @@ export const Register = () => {
     console.log(user);
     // connecting front end to backend
     try {
-      const response = await fetch("http://localhost:5173/api/auth/register", {
+      const response = await fetch("http://localhost:5000/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -40,7 +40,7 @@ export const Register = () => {
         setUser({ username: "", email: "", phone: "", password: "" });
         console.log(responseData);
       } else {
-        console.log("error inside response ", "error");
+        console.log("error inside response ", error);
       }
     } catch (error) {
       console.log("register", error);

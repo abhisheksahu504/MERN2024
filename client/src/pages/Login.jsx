@@ -16,9 +16,31 @@ export const Login = () => {
     });
   };
   //handling submit
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault;
     console.log(user);
+    //connecting to login
+    try {
+      const response = await fetch("http://localhost:5000/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
+      console.log("response data", response);
+      if (response.ok) {
+        const responseData = await response.json();
+        alert("Login Succesfull");
+        setUser({ email: "", password: "" });
+        console.log(responseData);
+      } else {
+        alert("Invalid Credential");
+        console.log("Invalid Credential", error);
+      }
+    } catch (error) {
+      console.log("login", error);
+    }
   };
   return (
     <div>
