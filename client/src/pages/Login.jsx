@@ -1,8 +1,12 @@
 import { React, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../store/auth";
 
 export const Login = () => {
   //state
   const [user, setUser] = useState({ email: "", password: "" });
+  const navigate = useNavigate();
+  const { storeTokenInLS } = useAuth();
   //handling input
   const handleInput = (e) => {
     console.log(e);
@@ -30,10 +34,14 @@ export const Login = () => {
       });
       console.log("response data", response);
       if (response.ok) {
-        const responseData = await response.json();
         alert("Login Succesfull");
+
+        const responseData = await response.json();
+        // localStorage.setItem("token", responseData.token);
+        storeTokenInLS(responseData.token);
+        navigate("/");
+
         setUser({ email: "", password: "" });
-        console.log(responseData);
       } else {
         alert("Invalid Credential");
         console.log("Invalid Credential", error);
