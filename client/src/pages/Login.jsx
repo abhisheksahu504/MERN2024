@@ -21,7 +21,7 @@ export const Login = () => {
   };
   //handling submit
   const handleSubmit = async (e) => {
-    e.preventDefault;
+    e.preventDefault();
     console.log(user);
     //connecting to login
     try {
