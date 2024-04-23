@@ -1,24 +1,38 @@
 import { useState } from "react";
+import { useAuth } from "../store/auth";
 
 export const Contact = () => {
-  const [contact, setContact] = useState({
+  const [data, setData] = useState({
     username: "",
     email: "",
     message: "",
   });
+  const { user } = useAuth();
+
+  const [userData, setUserData] = useState(true);
+
+  if (userData && user) {
+    console.log("xyz");
+    setData({
+      username: user.username,
+      email: user.email,
+      message: "",
+    });
+    setUserData(false);
+  }
   //handling the input fields
   const handleInput = (e) => {
     console.log(e);
     let name = e.target.name;
     let value = e.target.value;
-    setContact({
-      ...contact,
+    setData({
+      ...data,
       [name]: value,
     });
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(contact);
+    console.log(data);
   };
   return (
     <>
@@ -50,7 +64,7 @@ export const Contact = () => {
                   id="username"
                   required
                   autoComplete="off"
-                  value={contact.username}
+                  value={data.username}
                   onChange={handleInput}
                 />
               </div>
@@ -63,7 +77,7 @@ export const Contact = () => {
                   id="email"
                   required
                   autoComplete="off"
-                  value={contact.email}
+                  value={data.email}
                   onChange={handleInput}
                 />
               </div>
@@ -74,7 +88,7 @@ export const Contact = () => {
                   id="message"
                   cols="30"
                   rows="10"
-                  value={contact.message}
+                  value={data.message}
                   onChange={handleInput}
                   required
                   autoComplete="off"
