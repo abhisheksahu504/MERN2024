@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
     setToken("");
     return localStorage.removeItem("token");
   };
-  //   jwt aurhentiction - to get currently logged in user data
+  //   jwt authentiction - to get currently logged in user data
   const userAuthentication = async () => {
     try {
       const response = await fetch("http://localhost:5000/api/auth/user", {

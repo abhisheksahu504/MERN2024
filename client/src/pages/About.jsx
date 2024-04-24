@@ -1,7 +1,9 @@
 import React from "react";
 import { Analytics } from "../components/Analytics";
+import { useAuth } from "../store/auth";
 
 export const About = () => {
+  const { user } = useAuth();
   return (
     <>
       <main>
@@ -9,7 +11,8 @@ export const About = () => {
           <div className="container grid grid-two-cols">
             {/* text area  */}
             <div className="hero-content">
-              <p>Welcome to IT Services & consulting pvt ltd.</p>
+              <p>Welcome , {user ? user.username : `to our website`}</p>
+              <p>IT Services & consulting pvt ltd.</p>
               <h1>Why Choose Us</h1>
               <p>
                 <br />
