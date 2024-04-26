@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }) => {
       });
       if (response.ok) {
         const responses = await response.json();
-        console.log(responses.data);
+        // console.log(responses.data);
         setServices(responses.data);
       }
       console.log("service", response);

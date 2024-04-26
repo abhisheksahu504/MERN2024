@@ -37,20 +37,25 @@ export const Register = () => {
         },
         body: JSON.stringify(user),
       });
-      console.log("response data", response);
+      // console.log(response);
+      const responseData = await response.json();
+      console.log(responseData);
       if (response.ok) {
         // const res_data = await response.json();
         // console.log("res from server", res_data);
-        const responseData = await response.json();
         //storing the data in local storage
         //another way localStorage.setItem("token",responseData.token)
         storeTokenInLS(responseData.token);
         alert("registration successful");
         setUser({ username: "", email: "", phone: "", password: "" });
         navigate("/login");
-        console.log(responseData);
       } else {
-        console.log("error inside response ", error);
+        // console.log("error inside response ", error);
+        alert(
+          responseData.extraDetails
+            ? responseData.extraDetails
+            : responseData.message
+        );
       }
     } catch (error) {
       console.log("register", error);
