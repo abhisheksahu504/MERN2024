@@ -7,6 +7,8 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState("");
   const [services, setServices] = useState("");
   const storeTokenInLS = (serverToken) => {
+    //no need to refesh after a login
+    setToken(serverToken);
     return localStorage.setItem("token", serverToken);
   };
   let isLoggedIn = !!token;

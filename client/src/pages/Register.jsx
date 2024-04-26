@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/auth";
+import { toast } from "react-toastify";
 
 export const Register = () => {
   const [user, setUser] = useState({
@@ -46,12 +47,12 @@ export const Register = () => {
         //storing the data in local storage
         //another way localStorage.setItem("token",responseData.token)
         storeTokenInLS(responseData.token);
-        alert("registration successful");
+        toast.success("Registration successfull");
         setUser({ username: "", email: "", phone: "", password: "" });
-        navigate("/login");
+        navigate("/");
       } else {
         // console.log("error inside response ", error);
-        alert(
+        toast.error(
           responseData.extraDetails
             ? responseData.extraDetails
             : responseData.message

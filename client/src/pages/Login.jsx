@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/auth";
-
+import { toast } from "react-toastify";
 export const Login = () => {
   //state
   const [user, setUser] = useState({ email: "", password: "" });
@@ -35,7 +35,7 @@ export const Login = () => {
       console.log("response data", response);
       const responseData = await response.json();
       if (response.ok) {
-        alert("Login Succesfull");
+        toast.success("Login Successful");
 
         // localStorage.setItem("token", responseData.token);
         storeTokenInLS(responseData.token);
@@ -43,7 +43,7 @@ export const Login = () => {
 
         setUser({ email: "", password: "" });
       } else {
-        alert(
+        toast.error(
           responseData.extraDetails
             ? responseData.extraDetails
             : responseData.message
