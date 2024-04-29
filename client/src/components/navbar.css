@@ -8,3 +8,8 @@ ul {
   display: flex;
   gap: 3.2rem;
 }
+@media only screen and (max-width: 600px) {
+  .logo-brand {
+    content-visibility: hidden;
+  }
+}

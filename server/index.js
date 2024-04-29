@@ -5,6 +5,8 @@ const app = express();
 const authRoute = require("./router/auth-route");
 const contactRoute = require("./router/contact-router");
 const serviceRoute = require("./router/service-router");
+const adminRoute = require("./router/admin-router");
+
 const connectDB = require("./utils/db");
 const errorMiddleware = require("./middlewares/error-middleware");
 
@@ -21,6 +23,9 @@ app.use(cors(corsOptions));
 app.use("/api/auth", authRoute);
 app.use("/api/form", contactRoute);
 app.use("/api/data", serviceRoute);
+
+//lets define admin route
+app.use("/api/admin", adminRoute);
 
 //All this code is transferred to auth rout and auth controller files
 // app.get("/", (req, res) => {
