@@ -1,5 +1,7 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import { FaUser, FaHeadset, FaHome } from "react-icons/fa";
+import { GrServices } from "react-icons/gr";
 
 export const AdminLayout = () => {
   return (
@@ -9,16 +11,28 @@ export const AdminLayout = () => {
           <nav>
             <ul>
               <NavLink to="/admin/users">
-                <li>users</li>
+                <li>
+                  <FaUser />
+                  users
+                </li>
               </NavLink>
               <NavLink to="/admin/contacts">
-                <li>contacts</li>
+                <li>
+                  <FaHeadset />
+                  contacts
+                </li>
               </NavLink>
-              <NavLink>
-                <li>services</li>
+              <NavLink to="/service">
+                <li>
+                  <GrServices />
+                  services
+                </li>
               </NavLink>
-              <NavLink>
-                <li>Home</li>
+              <NavLink to="/">
+                <li>
+                  <FaHome />
+                  Home
+                </li>
               </NavLink>
             </ul>
           </nav>
