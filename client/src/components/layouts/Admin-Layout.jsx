@@ -5,7 +5,7 @@ import { GrServices } from "react-icons/gr";
 import { useAuth } from "../../store/auth";
 
 export const AdminLayout = () => {
-  const { user } = useAuth();
+  const { user, isLoading } = useAuth();
   console.log(user);
   if (isLoading) {
     return <h1>Loading...</h1>;
