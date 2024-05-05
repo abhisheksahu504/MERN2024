@@ -7,7 +7,7 @@ const defaulContactForm = {
 };
 export const Contact = () => {
   const [data, setData] = useState(defaulContactForm);
-  const { user } = useAuth();
+  const { user, API } = useAuth();
 
   const [userData, setUserData] = useState(true);
 
@@ -34,7 +34,7 @@ export const Contact = () => {
     e.preventDefault();
     // console.log(data);
     try {
-      const response = await fetch("http://localhost:5000/api/form/contact", {
+      const response = await fetch(`${API}/api/form/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

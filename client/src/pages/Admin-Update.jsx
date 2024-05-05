@@ -16,15 +16,12 @@ export const AdminUpdate = () => {
   //get single user data
   const getSingleUserData = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:5000/api/admin/users/${params.id}`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: authorizationToken,
-          },
-        }
-      );
+      const response = await fetch(`${API}/api/admin/users/${params.id}`, {
+        method: "GET",
+        headers: {
+          Authorization: authorizationToken,
+        },
+      });
       const data = await response.json();
       console.log(`users single delete ${data}`);
       setData(data);
@@ -51,7 +48,7 @@ export const AdminUpdate = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:5000/api/admin/users/update/${params.id}`,
+        `${API}/api/admin/users/update/${params.id}`,
         {
           method: "PATCH",
           headers: {
