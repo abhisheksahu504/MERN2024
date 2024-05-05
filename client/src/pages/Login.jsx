@@ -6,7 +6,7 @@ export const Login = () => {
   //state
   const [user, setUser] = useState({ email: "", password: "" });
   const navigate = useNavigate();
-  const { storeTokenInLS } = useAuth();
+  const { storeTokenInLS, API } = useAuth();
   //handling input
   const handleInput = (e) => {
     console.log(e);
@@ -25,7 +25,7 @@ export const Login = () => {
     console.log(user);
     //connecting to login
     try {
-      const response = await fetch("http://localhost:5000/api/auth/login", {
+      const response = await fetch(`${API}/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
