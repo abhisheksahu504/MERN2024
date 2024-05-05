@@ -19,4 +19,7 @@ router
 router
   .route("/contacts")
   .get(authMiddleware, adminMiddleware, adminContoller.getAllContacts);
+router
+  .route("/contacts/delete/:id")
+  .delete(authMiddleware, adminMiddleware, adminContoller.deleteContactByID);
 module.exports = router;
