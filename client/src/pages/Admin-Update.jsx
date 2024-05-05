@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../store/auth";
+import { toast } from "react-toastify";
 
 export const AdminUpdate = () => {
   const [data, setData] = useState({
@@ -9,10 +10,9 @@ export const AdminUpdate = () => {
     message: "",
   });
   const params = useParams();
+  console.log("params single user: ", params);
   const { authorizationToken } = useAuth();
-  useEffect(() => {
-    getSingleUserData();
-  }, []);
+
   //get single user data
   const getSingleUserData = async () => {
     try {
@@ -35,8 +35,41 @@ export const AdminUpdate = () => {
       console.log(error);
     }
   };
-  const handleInput = () => {};
-  const handleSubmit = () => {};
+  useEffect(() => {
+    getSingleUserData();
+  }, []);
+  const handleInput = (e) => {
+    let name = e.target.name;
+    let value = e.target.value;
+    setData({
+      ...data,
+      [name]: value,
+    });
+  };
+  //on submission of data
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/admin/users/update/${params.id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: authorizationToken,
+          },
+          body: JSON.stringify(data),
+        }
+      );
+      if (response.ok) {
+        toast.success("Update Successfully");
+      } else {
+        toast.error("Not Updated");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <section className="section-contact">
