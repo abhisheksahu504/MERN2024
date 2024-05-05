@@ -11,7 +11,7 @@ export const AdminUpdate = () => {
   });
   const params = useParams();
   console.log("params single user: ", params);
-  const { authorizationToken } = useAuth();
+  const { authorizationToken, API } = useAuth();
 
   //get single user data
   const getSingleUserData = async () => {
